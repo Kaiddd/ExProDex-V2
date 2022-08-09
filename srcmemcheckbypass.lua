@@ -22,7 +22,7 @@ end
 
 --Kaid#0001 | Memcheck bypass
 math.randomseed(tick())
-local cclosure = syn_newcclosure or newcclosure or nil
+local cclosure = newcclosure or nil
 
 if cclosure and hookfunction and getrenv then
     local minMem = 1e12
@@ -59,8 +59,12 @@ if cclosure and hookfunction and getrenv then
     hookfunction(getrenv().gcinfo,cclosure(function()
         return currMem
     end))
-    hookfunction(getrenv().collectgarbage,cclosure(function()
-        return currMem
+    local oldCg
+    oldCg = hookfunction(getrenv().collectgarbage,cclosure(function(arg1,...)
+        if arg1 == "count" then
+            return currMem
+        end
+        return oldCg(arg1,...)
     end))
     task.wait(.1)
     alert("Loaded Memcheck Bypass ~Kaid")
@@ -99,8 +103,12 @@ elseif hookfunction and getrenv then
     hookfunction(getrenv().gcinfo,function()
         return currMem
     end)
-    hookfunction(getrenv().collectgarbage,function()
-        return currMem
+    local oldCg
+    oldCg = hookfunction(getrenv().collectgarbage,function(arg1,...)
+        if arg1 == "count" then
+            return currMem
+        end
+        return oldCg(arg1,...)
     end)
     task.wait(.1)
     alert("Your shitty exploit doesn't even support cclosure? Still bypassed memcheck but WTF. (Go buy synapse at x.synapse.to or scriptware at script-ware.com) ~Kaid")
