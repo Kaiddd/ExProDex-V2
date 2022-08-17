@@ -1849,8 +1849,12 @@ pcall(function()
     end
 end)
 pcall(function()
-    if syn and syn.protect_gui then
-        syn.protect_gui(D_E_X)
+    if expro and expro.protect_instance then
+        expro.protect_instance(D_E_X)
+        else
+        if protect_instance then
+           protect_instance(D_E_X)
+        end
     end
 end)
 local CoreGui2
