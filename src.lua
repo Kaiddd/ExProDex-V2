@@ -1959,7 +1959,7 @@ task.spawn(function()
     local SelectionChanged = ExplorerPanel:WaitForChild("SelectionHasChanged")
     local GetSelection = ExplorerPanel:WaitForChild("GetSelection")
     local SetSelection = ExplorerPanel:WaitForChild("SetSelection")
-    task_spawn(function()
+    task.spawn(function()
     pcall(function()
     if protect_instance then
     for i, v in pairs(getdescendants and getdescendants(ScreenGui) or ScreenGui:GetDescendants()) do
