@@ -1911,7 +1911,6 @@ pcall(LoadScripts, Obj)
 end
 pcall(Load, D_E_X)
 
-
 task.spawn(function()
     local Gui = D_E_X
     local IntroFrame = Gui:WaitForChild("IntroFrame")
@@ -1960,6 +1959,15 @@ task.spawn(function()
     local SelectionChanged = ExplorerPanel:WaitForChild("SelectionHasChanged")
     local GetSelection = ExplorerPanel:WaitForChild("GetSelection")
     local SetSelection = ExplorerPanel:WaitForChild("SetSelection")
+    task_spawn(function()
+    pcall(function()
+    if protect_instance then
+    for i, v in pairs(getdescendants and getdescendants(ScreenGui) or ScreenGui:GetDescendants()) do
+    protect_instance(ScreenGui)
+    end
+    end							
+    end)
+    end)
     local Players = cloneref(game:GetService("Players"))
     local Player = Players.LocalPlayer
     local Mouse = Player:GetMouse()
