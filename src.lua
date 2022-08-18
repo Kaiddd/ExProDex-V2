@@ -1864,7 +1864,7 @@ pcall(function()
 sethiddenproperty(D_E_X, "OnTopOfCoreBlur", false)
 end)
 end
-D_E_X.Parent = gethiddengui and gethiddengui()
+D_E_X.Parent = gethiddengui and gethiddengui() or gethui and gethui() or game:GetService("CoreGui"):FindFirstChildOfClass("ScreenGui") or game:GetService("CoreGui"):FindFirstChildOfClass("Folder")
 
 local function Load(Obj, Url)
 local function GiveOwnGlobals(Func, Script)
