@@ -81,15 +81,13 @@ local randomNumbers = math.random(1e9, 2e9)
 return tostring(randomNumbers)
 end
 
+--[[
 task.spawn(function()
 pcall(function()
 if cloneref and checkcaller and hookfunction and hookmetamethod and getnamecallmethod then
 
 local Content = cloneref(game:GetService("ContentProvider"));
 local CoreGui = cloneref(game:GetService("CoreGui"));
-
-					
---[[
 local randomizedCoreGuiTable;
 local randomizedGameTable;
 
@@ -168,7 +166,8 @@ end)
 end
 end)
 end)
-]]--			
+]]--	
+
 local LogService = cloneref(game:GetService("LogService"))
 local ScriptContext = cloneref(game:GetService("ScriptContext"))
 
@@ -1853,7 +1852,7 @@ pcall(function()
         syn.protect_gui(D_E_X)
     end
 end)
-pcall(function()
+--[[pcall(function()
     if expro and expro.protect_instance then
         expro.protect_instance(D_E_X)
         else
@@ -1861,7 +1860,7 @@ pcall(function()
            protect_instance(D_E_X)
         end
     end
-end)
+end)]]--
 if sethiddenproperty then
 pcall(function()
 sethiddenproperty(D_E_X, "OnTopOfCoreBlur", false)
