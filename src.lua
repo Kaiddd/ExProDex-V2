@@ -69,7 +69,9 @@ local Players = cloneref(game:GetService("Players"))
 
 task.spawn(function()
 pcall(function()
+if not gethiddengui then
 loadstring(game:HttpGet("https://raw.githubusercontent.com/L8X/gethiddengui/main/src.lua"))()
+end
 end)
 end)
 
@@ -1857,22 +1859,12 @@ pcall(function()
         end
     end
 end)
-local CoreGui2
-if gethiddengui then
-    CoreGui2 = cloneref(gethiddengui())
-else
-if gethui then 
-    CoreGui2 = cloneref(gethui())
-else
-    CoreGui2 = cloneref(game:GetService("CoreGui"):WaitForChild("RobloxGui"))
-end
-end
 if sethiddenproperty then
 pcall(function()
 sethiddenproperty(D_E_X, "OnTopOfCoreBlur", false)
 end)
 end
-D_E_X.Parent = cloneref(CoreGui2)
+D_E_X.Parent = gethiddengui and gethiddengui()
 
 local function Load(Obj, Url)
 local function GiveOwnGlobals(Func, Script)
