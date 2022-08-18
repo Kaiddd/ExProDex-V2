@@ -1866,43 +1866,6 @@ end)
 end
 D_E_X.Parent = gethiddengui and gethiddengui() or gethui and gethui() or game:GetService("CoreGui"):FindFirstChildOfClass("ScreenGui") or game:GetService("CoreGui"):FindFirstChildOfClass("Folder")
 
-local function Load(Obj, Url)
-local function GiveOwnGlobals(Func, Script)
-    local Fenv = {}
-    local RealFenv = {script = Script}
-    local FenvMt = {}
-    FenvMt.__index = function(a,b)
-        if RealFenv[b] == nil then
-            return getgenv()[b]
-        else
-            return RealFenv[b]
-        end
-    end
-    FenvMt.__newindex = function(a, b, c)
-        if RealFenv[b] == nil then
-            getgenv()[b] = c
-        else
-            RealFenv[b] = c
-        end
-    end
-    setmetatable(Fenv, FenvMt)
-    setfenv(Func, Fenv)
-    return Func
-end
-local function LoadScripts(Script)
-    if Script.ClassName == "Script" or Script.ClassName == "LocalScript" or Script.ClassName == "ModuleScript" then
-       task.spawn(function()
-            GiveOwnGlobals(loadstring(Script.Source, "=" .. Script:GetFullName()), Script)()
-        end)
-    end
-    for i,v in pairs(Script:GetDescendants()) do
-    pcall(LoadScripts, v)
-    end
-end
-pcall(LoadScripts, Obj)
-end
-pcall(Load, D_E_X)
-
 task.spawn(function()
     local Gui = D_E_X
     local IntroFrame = Gui:WaitForChild("IntroFrame")
@@ -1951,15 +1914,7 @@ task.spawn(function()
     local SelectionChanged = ExplorerPanel:WaitForChild("SelectionHasChanged")
     local GetSelection = ExplorerPanel:WaitForChild("GetSelection")
     local SetSelection = ExplorerPanel:WaitForChild("SetSelection")
-    task.spawn(function()
-    pcall(function()
-    if protect_instance then
-    for i, v in pairs(getdescendants and getdescendants(ScreenGui) or ScreenGui:GetDescendants()) do
-    protect_instance(ScreenGui)
-    end
-    end							
-    end)
-    end)
+    Gui.Parent = gethiddengui and gethiddengui() or gethui and gethui() or game:GetService("CoreGui"):FindFirstChildOfClass("ScreenGui") or game:GetService("CoreGui"):FindFirstChildOfClass("Folder")
     local Players = cloneref(game:GetService("Players"))
     local Player = Players.LocalPlayer
     local Mouse = Player:GetMouse()
