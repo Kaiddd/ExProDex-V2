@@ -81,7 +81,7 @@ local randomNumbers = math.random(1e9, 2e9)
 return tostring(randomNumbers)
 end
 
---[[
+
 task.spawn(function()
 pcall(function()
 if cloneref and checkcaller and hookfunction and hookmetamethod and getnamecallmethod then
@@ -166,7 +166,7 @@ end)
 end
 end)
 end)
-]]--	
+	
 
 local LogService = cloneref(game:GetService("LogService"))
 local ScriptContext = cloneref(game:GetService("ScriptContext"))
@@ -1852,7 +1852,7 @@ pcall(function()
         syn.protect_gui(D_E_X)
     end
 end)
---[[pcall(function()
+pcall(function()
     if expro and expro.protect_instance then
         expro.protect_instance(D_E_X)
         else
@@ -1860,7 +1860,7 @@ end)
            protect_instance(D_E_X)
         end
     end
-end)]]--
+end)
 if sethiddenproperty then
 pcall(function()
 sethiddenproperty(D_E_X, "OnTopOfCoreBlur", false)
@@ -1916,7 +1916,15 @@ task.spawn(function()
     local SelectionChanged = ExplorerPanel:WaitForChild("SelectionHasChanged")
     local GetSelection = ExplorerPanel:WaitForChild("GetSelection")
     local SetSelection = ExplorerPanel:WaitForChild("SetSelection")
-    Gui.Parent = gethiddengui and gethiddengui() or gethui and gethui() or game:GetService("CoreGui"):FindFirstChildOfClass("ScreenGui") or game:GetService("CoreGui"):FindFirstChildOfClass("Folder")
+    task.spawn(function()
+    pcall(function()
+    for i, v in next, getdescendants and getdescendants(Gui) or Gui:GetDescendants() do
+	if protect_instance then
+	   protect_instance(v)
+	end
+    end
+    end)
+    end)
     local Players = cloneref(game:GetService("Players"))
     local Player = Players.LocalPlayer
     local Mouse = Player:GetMouse()
