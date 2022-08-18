@@ -87,6 +87,9 @@ if cloneref and checkcaller and hookfunction and hookmetamethod and getnamecallm
 
 local Content = cloneref(game:GetService("ContentProvider"));
 local CoreGui = cloneref(game:GetService("CoreGui"));
+
+					
+--[[
 local randomizedCoreGuiTable;
 local randomizedGameTable;
 
@@ -165,7 +168,7 @@ end)
 end
 end)
 end)
-				
+]]--			
 local LogService = cloneref(game:GetService("LogService"))
 local ScriptContext = cloneref(game:GetService("ScriptContext"))
 
