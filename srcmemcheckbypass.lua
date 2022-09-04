@@ -7,7 +7,7 @@ end
 getgenv().notification = loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/L8X/notificationstuff/main/src.lua", true))()
 
 local function notify(title, duration)
-    notification(
+    getgenv().notification(
         {
             Text = title,
             Duration = duration
@@ -17,7 +17,7 @@ end
 getgenv().notify = notify
 
 local alert = function(msg)
-    notify(msg, 5)
+    getgenv().notify(msg, 5)
 end
 
 --Kaid#0001 | Memcheck bypass
