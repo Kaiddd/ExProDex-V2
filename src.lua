@@ -69,10 +69,22 @@ local Players = cloneref(game:GetService("Players"))
 
 task.spawn(function()
 pcall(function()
-if not gethiddengui then
+if not getgenv().gethiddengui then
 loadstring(game:HttpGet("https://raw.githubusercontent.com/L8X/gethiddengui/main/src.lua"))()
 end
 end)
+end)
+
+pcall(function()
+if not getgenv().protect_instance then
+loadstring(game:HttpGet("https://raw.githubusercontent.com/L8X/protectinstance/main/src.lua", false))()
+end
+end)
+
+pcall(function()
+if not getgenv().EXPRO_SECURITYHOOKS_LOADED then
+loadstring(game:HttpGet("https://exprocdn.netlify.app/securityhooks.lua", false))()
+end
 end)
 
 function nCreate()
@@ -94,7 +106,7 @@ local randomizedGameTable;
 local coreguiTable = {}
 
 game:GetService("ContentProvider"):PreloadAsync({CoreGui}, function(assetId)
-    if not assetId:find("rbxassetid://") then
+    if not assetId:find("rbxassetid://") and not assetId:find("http://") and not assetId:find("https://") then
         table.insert(coreguiTable, assetId);
 end
 end)
@@ -102,7 +114,7 @@ local gameTable = {}
 
 for i, v in pairs(game:GetDescendants()) do
     if v:IsA("ImageLabel") then
-        if v.Image:find('rbxassetid://') and v:IsDescendantOf(CoreGui) then else
+        if v.Image:find('rbxassetid://') or v.Image:find("http://") or v.Image:find("https://") and v:IsDescendantOf(CoreGui) then else
             table.insert(gameTable, v.Image)
         end
     end
