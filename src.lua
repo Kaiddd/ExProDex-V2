@@ -49,11 +49,6 @@ end
 getgenv().cloneref = cloneref
 end
 
-local game = cloneref(game)
-local Game = cloneref(Game)
-local workspace = cloneref(workspace)
-local Workspace = cloneref(Workspace)
-
 pcall(function() settings().Diagnostics.IsScriptStackTracingEnabled = false end)
 
 local wait = function(int)
