@@ -88,7 +88,7 @@ local randomNumbers = math.random(1e9, 2e9)
 return tostring(randomNumbers)
 end
 
-
+--[[
 task.spawn(function()
 pcall(function()
 if cloneref and checkcaller and hookfunction and hookmetamethod and getnamecallmethod then
@@ -173,7 +173,7 @@ end)
 end
 end)
 end)
-	
+]]--
 
 local LogService = cloneref(game:GetService("LogService"))
 local ScriptContext = cloneref(game:GetService("ScriptContext"))
