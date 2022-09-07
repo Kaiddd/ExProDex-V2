@@ -88,9 +88,14 @@ local randomNumbers = math.random(1e9, 2e9)
 return tostring(randomNumbers)
 end
 
---[[
+
 task.spawn(function()
 pcall(function()
+
+if (getgenv().preload_bypassed) then return; end
+
+getgenv().preload_bypassed = true
+
 if cloneref and checkcaller and hookfunction and hookmetamethod and getnamecallmethod then
 
 local Content = cloneref(game:GetService("ContentProvider"));
@@ -173,7 +178,6 @@ end)
 end
 end)
 end)
-]]--
 
 local LogService = cloneref(game:GetService("LogService"))
 local ScriptContext = cloneref(game:GetService("ScriptContext"))
