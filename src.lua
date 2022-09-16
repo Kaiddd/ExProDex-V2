@@ -1859,7 +1859,7 @@ CreateGui = function()
 end
 local D_E_X = CreateGui()
 pcall(function()
-    if syn and syn.protect_gui then
+    if syn and syn.protect_gui and not gethui then
         syn.protect_gui(D_E_X)
     end
 end)
